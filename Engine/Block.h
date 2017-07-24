@@ -5,10 +5,11 @@
 class Block : public Shape
 {
 protected:
-	int width;
-	int hight;
+	int _width;
+	int _hight;
 
 public:
-	Block();
+	Block(Color c,Location l,int w,int h);
 	void interactWithBall();
+	virtual void DrawShape(Graphics & gfx);
 };

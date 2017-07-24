@@ -25,8 +25,10 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	b(40, Colors::Green, { 600,500 },2)
+	b(40, Colors::Green, { 100,500 },2)
+	
 {
+	bar = new Bar(Colors::Blue, { 400,500 }, 200, 20,6);
 }
 
 void Game::Go()
@@ -40,9 +42,27 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	b.BallMovement();
+	b.BounceFromBar(*bar);
+	bar->MoveBar(GetKeyboardInputBar());
 }
+
+int Game::GetKeyboardInputBar()
+{
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		return 1;
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		return 2;
+	}
+}
+
+
 
 void Game::ComposeFrame()
 {
 	b.DrawShape(gfx);
+	((Block*)bar)->DrawShape(gfx);
 }
+

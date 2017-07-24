@@ -54,3 +54,11 @@ void Ball::BallMovement()
 	}
 	_location.add(speed);
 }
+
+void Ball::BounceFromBar(Bar b)
+{
+	if ((_location.y == (b.GetSurfaceH() - _radius))&&_location.x<=b.GetRightSideX()&&_location.x>=b.GetLeftSideX())
+	{
+		speed.y = -speed.y;
+	}
+}

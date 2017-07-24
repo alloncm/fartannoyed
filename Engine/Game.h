@@ -24,6 +24,7 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "Ball.h"
+#include "Bar.h"
 
 class Game
 {
@@ -37,6 +38,7 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	int GetKeyboardInputBar();
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -45,7 +47,7 @@ private:
 	/*  User Variables              */
 	Ball b;
 	
-
+	Bar* bar;
 	
 	/********************************/
 };
