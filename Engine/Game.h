@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Ball.h"
 #include "Bar.h"
+#include "Block.h"
 
 class Game
 {
@@ -33,19 +34,24 @@ public:
 	Game( const Game& ) = delete;
 	Game& operator=( const Game& ) = delete;
 	void Go();
+
+
 private:
 	void ComposeFrame();
 	void UpdateModel();
+
 	/********************************/
 	/*  User Functions              */
 	int GetKeyboardInputBar();
 	/********************************/
+
+
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	Ball b;
+	Ball ball;
 	
 	Bar* bar;
 	

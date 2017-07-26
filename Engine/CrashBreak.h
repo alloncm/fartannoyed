@@ -5,6 +5,7 @@
 class CrashBreak : public Block
 {
 public:
-	CrashBreak();
+	CrashBreak(Color c, Location l, int w, int h) : Block(c, l, w, h) {}
+	Location encounter(Location loc, int radius, Location speed);
 
 };

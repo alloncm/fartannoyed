@@ -4,14 +4,12 @@
 #include "Block.h"
 #include "Keyboard.h"
 
-class Bar : Block
+class Bar : public Block
 {
 public:
-	Bar(Color c,Location l,int w,int h,int s);
-	int GetSurfaceH();
-	int GetRightSideX();
-	int GetLeftSideX();
+	Bar(Color c,Location l,int width,int hight,int s);
 	void MoveBar(int m);
+	Location encounter(Location loc, int radius, Location speed);
 private:
 	int _speed;
 };

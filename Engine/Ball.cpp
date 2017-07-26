@@ -36,29 +36,30 @@ void Ball::BallMovement()
 {
 	
 	
-	if (_location.x + _radius >= Graphics::ScreenWidth-speed.x)
+	if (_location.x + _radius >= Graphics::ScreenWidth-speed.x) //right wall
 	{
 		speed.x =-speed.x;
 	}
-	else if(_location.x - _radius <= 0)
+	else if(_location.x - _radius <= 0) //left wall
 	{
 		speed.x = -speed.x;
 	}
-	if (_location.y + _radius >= Graphics::ScreenHeight-speed.y)
+	if (_location.y + _radius >= Graphics::ScreenHeight-speed.y) //ceiling
 	{
 		speed.y = -speed.y;
 	}
-	else if (_location.y - _radius <= 0)
+	else if (_location.y - _radius <= 0) //floor
 	{
+		// lost a ball
 		speed.y = -speed.y;
 	}
+
 	_location.add(speed);
 }
 
-void Ball::BounceFromBar(Bar b)
+void Ball::BounceFromBlock(Block* b)
 {
-	if ((_location.y == (b.GetSurfaceH() - _radius))&&_location.x<=b.GetRightSideX()&&_location.x>=b.GetLeftSideX())
-	{
-		speed.y = -speed.y;
-	}
+	speed = b->encounter(_location,_radius,speed);
+
+	
 }
