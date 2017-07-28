@@ -4,6 +4,8 @@
 #include "Location.h"
 #include "Graphics.h"
 
+#define BALL_TOTAL_SPEED 4
+
 class Shape
 {
 public:

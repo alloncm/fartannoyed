@@ -15,5 +15,5 @@ public:
 	int GetSurfaceH();
 	int GetRightSideX();
 	int GetLeftSideX();
-	virtual Location encounter(Location loc, int radius, Location speed) = 0;
+	virtual Location encounter(Location loc, int radius, Location speed) = 0; // return the speed the ball at after the encounter
 };

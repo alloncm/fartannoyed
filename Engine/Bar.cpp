@@ -32,3 +32,49 @@ void Bar::MoveBar(int choice)
 		break;
 	}
 }
+
+
+
+Location Bar::encounter(Location loc, int radius, Location speed)
+{
+	if (!(loc.y == (GetSurfaceH() - radius)) && loc.x <= GetRightSideX() && loc.x >= GetLeftSideX())
+		return speed;
+
+
+	int disFromRight = GetRightSideX() + _width - loc.x;
+
+	//if (speed.x >= 0) // ball comes from left
+	//{
+		if (disFromRight < (_width / 2)) // at the right side of the bar
+		{
+			double disByPercent = disFromRight / (_width / 2);
+			speed.x = BALL_TOTAL_SPEED * (1 - disByPercent);
+			speed.y = BALL_TOTAL_SPEED * disByPercent;
+
+		}
+		else // at the left side of the bar
+		{
+			double disByPercent = (_width - disFromRight) / (_width / 2);
+			speed.x = BALL_TOTAL_SPEED * -1 * (1 - disByPercent);
+			speed.y = BALL_TOTAL_SPEED * disByPercent;
+		}
+	//}
+	/*else // ball from right
+	{
+		if (disFromRight < (_width / 2)) // at the right side of the bar
+		{
+			double disByPercent = disFromRight / (_width / 2);
+			speed.x = BALL_TOTAL_SPEED *  (1 - disByPercent);
+			speed.y = BALL_TOTAL_SPEED * disByPercent;
+		}
+		else // at the left side of the bar
+		{
+			double disByPercent = (_width - disFromRight) / (_width / 2);
+			speed.x = BALL_TOTAL_SPEED * -1 * (1 - disByPercent);
+			speed.y = BALL_TOTAL_SPEED * disByPercent;
+		}
+	} */
+
+	return speed;
+	
+}
