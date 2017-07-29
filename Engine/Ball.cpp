@@ -34,32 +34,35 @@ void Ball::DrawShape(Graphics & gfx)
 
 void Ball::BallMovement()
 {
+	_location.add(speed);
 	
-	
-	if (_location.x + _radius >= Graphics::ScreenWidth-speed.x) //right wall
+	if (_location.x + _radius >= Graphics::ScreenWidth) //right wall
 	{
 		speed.x =-speed.x;
+		_location.x = Graphics::ScreenWidth - _radius - 1;
 	}
-	else if(_location.x - _radius <= 0) //left wall
+	else if(_location.x - _radius<= 0) //left wall
 	{
 		speed.x = -speed.x;
+		_location.x = 0 + _radius;
 	}
-	if (_location.y + _radius >= Graphics::ScreenHeight-speed.y) //ceiling
+	if (_location.y + _radius >= Graphics::ScreenHeight) //floor
 	{
 		speed.y = -speed.y;
+		_location.y = Graphics::ScreenHeight - _radius - 1;
 	}
-	else if (_location.y - _radius <= 0) //floor
+	else if (_location.y - _radius <= 0) //ceiling
 	{
-		// lost a ball
 		speed.y = -speed.y;
+		_location.y = 0 + _radius;
 	}
 
-	_location.add(speed);
+	
 }
 
-void Ball::BounceFromBlock(Block* b)
+void Ball::BounceFromBlock(Bar b)
 {
-	speed = b->encounter(_location,_radius,speed);
+	speed = b.encounter(_location,_radius,speed);
 
 	
 }

@@ -2,6 +2,7 @@
 
 #include "Shape.h"
 #include "Bar.h"
+#include <cmath>
 
 
 class Ball : public Shape
@@ -14,5 +15,5 @@ public:
 	Ball(int r,Color c, Location loc,int s);
 	virtual void DrawShape(Graphics & gfx);
 	void BallMovement();
-	void BounceFromBlock(Block* b);
+	void BounceFromBlock(Bar b);
 };

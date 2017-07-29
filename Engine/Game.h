@@ -53,7 +53,7 @@ private:
 	/*  User Variables              */
 	Ball ball;
 	
-	Bar* bar;
+	Bar bar;
 	
 	/********************************/
 };
