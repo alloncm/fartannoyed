@@ -25,7 +25,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball (40, Colors::Green, { 100,500 }, 7),
+	ball (40, Colors::Green, { 100,100 }, 7),
 	bar(Colors::Blue, { 400,500 }, 200, 20, 6)
 	
 {
@@ -42,7 +42,7 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	ball.BallMovement();
-	//ball.BounceFromBlock(bar);
+	ball.BounceFromBar(bar);
 	bar.MoveBar(GetKeyboardInputBar());
 }
 

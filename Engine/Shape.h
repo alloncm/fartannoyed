@@ -10,9 +10,9 @@ class Shape
 {
 public:
 	Shape(Color color, Location location) : _color(color), _location(location) {}
-	virtual void DrawShape(Graphics & gfx) = 0;
+	virtual void DrawShape(Graphics & gfx) = 0;		//virtual function to draw shape to the screen
 
 protected:
-	Color _color;
-	Location _location;
+	Color _color;			//color of the shape
+	Location _location;		//the location of the shape
 };

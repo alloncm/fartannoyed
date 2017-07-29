@@ -10,6 +10,8 @@ Bar::Bar(Color c, Location l, int w, int h,int s)
 
 
 void Bar::MoveBar(int choice)
+//the bar moves depends on input recived from the user only right and left. 
+//1 for left 2 for right
 {
 	switch (choice)
 	{
@@ -37,14 +39,15 @@ void Bar::MoveBar(int choice)
 
 Location Bar::encounter(Location loc, int radius, Location speed)
 {
-	if (!(loc.y == (GetSurfaceH() - radius)) && loc.x <= GetRightSideX() && loc.x >= GetLeftSideX())
-		return speed;
+	if ((((loc.y <= (GetSurfaceH() - radius))&&loc.y+speed.y>= (GetSurfaceH() - radius)) && loc.x <= GetRightSideX() && loc.x >= GetLeftSideX()))
+	{
 
 
-	int disFromRight = GetRightSideX() + _width - loc.x;
 
-	//if (speed.x >= 0) // ball comes from left
-	//{
+		int disFromRight = GetRightSideX() + _width - loc.x;
+
+		//if (speed.x >= 0) // ball comes from left
+		//{
 		if (disFromRight < (_width / 2)) // at the right side of the bar
 		{
 			double disByPercent = disFromRight / (_width / 2);
@@ -58,23 +61,23 @@ Location Bar::encounter(Location loc, int radius, Location speed)
 			speed.x = BALL_TOTAL_SPEED * -1 * (1 - disByPercent);
 			speed.y = BALL_TOTAL_SPEED * disByPercent;
 		}
-	//}
-	/*else // ball from right
-	{
-		if (disFromRight < (_width / 2)) // at the right side of the bar
+		//}
+		/*else // ball from right
 		{
-			double disByPercent = disFromRight / (_width / 2);
-			speed.x = BALL_TOTAL_SPEED *  (1 - disByPercent);
-			speed.y = BALL_TOTAL_SPEED * disByPercent;
-		}
-		else // at the left side of the bar
-		{
-			double disByPercent = (_width - disFromRight) / (_width / 2);
-			speed.x = BALL_TOTAL_SPEED * -1 * (1 - disByPercent);
-			speed.y = BALL_TOTAL_SPEED * disByPercent;
-		}
-	} */
-
+			if (disFromRight < (_width / 2)) // at the right side of the bar
+			{
+				double disByPercent = disFromRight / (_width / 2);
+				speed.x = BALL_TOTAL_SPEED *  (1 - disByPercent);
+				speed.y = BALL_TOTAL_SPEED * disByPercent;
+			}
+			else // at the left side of the bar
+			{
+				double disByPercent = (_width - disFromRight) / (_width / 2);
+				speed.x = BALL_TOTAL_SPEED * -1 * (1 - disByPercent);
+				speed.y = BALL_TOTAL_SPEED * disByPercent;
+			}
+		} */
+	}
 	return speed;
 	
 }

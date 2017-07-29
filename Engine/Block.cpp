@@ -9,6 +9,7 @@ Block::Block(Color c, Location l, int w, int h)
 }
 
 void Block::DrawShape(Graphics & gfx)
+//Draw a block to the screen
 {
 	for (int i = _location.x - (_width/2); i < _location.x + (_width/2); i++)
 	{

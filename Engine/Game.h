@@ -51,9 +51,9 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	Ball ball;
+	Ball ball;		//the ball 
 	
-	Bar bar;
+	Bar bar;		//the abr the player controls
 	
 	/********************************/
 };

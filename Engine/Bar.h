@@ -7,12 +7,10 @@
 
 class Bar : public Block
 {
-
-
 public:
 	Bar(Color c,Location l,int width,int hight,int s);
-	void MoveBar(int m);
-	Location encounter(Location loc, int radius, Location speed);
+	void MoveBar(int m);											//moves the bar
+	Location encounter(Location loc, int radius, Location speed);	//encounter the ball to the right position
 private:
-	int _speed;
+	int _speed;		//the speed of the bar movement
 };

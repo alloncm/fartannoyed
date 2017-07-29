@@ -3,9 +3,10 @@
 Ball::Ball(int r, Color c, Location loc,int s) 
 	:
 	Shape(c, loc),
-	speed(s,s)
+	speed(s,s),
+	_radius(r)
 {
-	_radius = r;
+	
 }
 
 void Ball::DrawShape(Graphics & gfx)
@@ -33,6 +34,7 @@ void Ball::DrawShape(Graphics & gfx)
 }
 
 void Ball::BallMovement()
+//moves the ball depends on the walls
 {
 	_location.add(speed);
 	
@@ -60,7 +62,8 @@ void Ball::BallMovement()
 	
 }
 
-void Ball::BounceFromBlock(Bar b)
+void Ball::BounceFromBar(Bar b)
+//the ball bounce from the bar. in encounter the angle is being calculated
 {
 	speed = b.encounter(_location,_radius,speed);
 
