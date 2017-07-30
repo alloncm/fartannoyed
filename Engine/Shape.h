@@ -4,7 +4,7 @@
 #include "Location.h"
 #include "Graphics.h"
 
-#define BALL_TOTAL_SPEED 4
+#define BALL_TOTAL_SPEED 10
 
 class Shape
 {

@@ -53,7 +53,7 @@ private:
 	/*  User Variables              */
 	Ball ball;		//the ball 
 	
-	Bar bar;		//the abr the player controls
+	Bar* bar;		//the abr the player controls
 	
 	/********************************/
 };

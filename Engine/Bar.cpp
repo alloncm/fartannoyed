@@ -44,22 +44,22 @@ Location Bar::encounter(Location loc, int radius, Location speed)
 
 
 
-		int disFromRight = GetRightSideX() + _width - loc.x;
+		int disFromRight = GetLeftSideX() + _width - loc.x;
 
 		//if (speed.x >= 0) // ball comes from left
 		//{
 		if (disFromRight < (_width / 2)) // at the right side of the bar
 		{
-			double disByPercent = disFromRight / (_width / 2);
+			double disByPercent = disFromRight / ((double)_width / 2);
 			speed.x = BALL_TOTAL_SPEED * (1 - disByPercent);
-			speed.y = BALL_TOTAL_SPEED * disByPercent;
+			speed.y = BALL_TOTAL_SPEED * -1 * disByPercent;
 
 		}
 		else // at the left side of the bar
 		{
-			double disByPercent = (_width - disFromRight) / (_width / 2);
+			double disByPercent = (_width - disFromRight) / ((double)_width / 2);
 			speed.x = BALL_TOTAL_SPEED * -1 * (1 - disByPercent);
-			speed.y = BALL_TOTAL_SPEED * disByPercent;
+			speed.y = BALL_TOTAL_SPEED * -1 * disByPercent;
 		}
 		//}
 		/*else // ball from right
@@ -78,6 +78,8 @@ Location Bar::encounter(Location loc, int radius, Location speed)
 			}
 		} */
 	}
+	if (speed.y >= -1)
+		speed.y = -1;
 	return speed;
 	
 }

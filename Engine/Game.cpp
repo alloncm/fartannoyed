@@ -25,10 +25,9 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball (40, Colors::Green, { 100,100 }, 7),
-	bar(Colors::Blue, { 400,500 }, 200, 20, 6)
-	
+	ball (25, Colors::Green, { 100,100 }, 7)
 {
+		bar = new Bar(Colors::Blue,{ 400,500 }, 300, 15, 6);
 }
 
 void Game::Go()
@@ -43,7 +42,7 @@ void Game::UpdateModel()
 {
 	ball.BallMovement();
 	ball.BounceFromBar(bar);
-	bar.MoveBar(GetKeyboardInputBar());
+	bar->MoveBar(GetKeyboardInputBar());
 }
 
 int Game::GetKeyboardInputBar()
@@ -63,6 +62,6 @@ int Game::GetKeyboardInputBar()
 void Game::ComposeFrame()
 {
 	ball.DrawShape(gfx);
-	bar.DrawShape(gfx);
+	bar->DrawShape(gfx);
 }
 
