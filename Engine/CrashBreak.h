@@ -5,7 +5,8 @@
 class CrashBreak : public Block
 {
 public:
-	CrashBreak(Color c, Location l, int w, int h) : Block(c, l, w, h) {}
+	CrashBreak(Color c, Location l) : Block(c, l, 30, 5) {}
 	Location encounter(Location loc, int radius, Location speed);
+	static vector<CrashBreak*>* generateBreaks(int amount);
 
 };

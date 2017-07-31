@@ -28,6 +28,21 @@ Game::Game(MainWindow& wnd)
 	ball (25, Colors::Green, { 100,100 }, 7)
 {
 		bar = new Bar(Colors::Blue,{ 400,500 }, 300, 15, 6);
+		breaks = CrashBreak::generateBreaks(30);
+}
+
+Game::~Game()
+{
+	CrashBreak* temp;
+
+	delete bar;
+	for (int i = 0; i < !breaks->empty; i++)
+	{
+		temp = breaks->back();
+		breaks->pop_back();
+		delete temp;
+	}
+	delete breaks;
 }
 
 void Game::Go()
@@ -41,7 +56,7 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	ball.BallMovement();
-	ball.BounceFromBar(bar);
+	ball.Bounce(bar);
 	bar->MoveBar(GetKeyboardInputBar());
 }
 

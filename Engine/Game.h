@@ -25,7 +25,10 @@
 #include "Graphics.h"
 #include "Ball.h"
 #include "Bar.h"
-#include "Block.h"
+#include "CrashBreak.h"
+#include <vector>
+
+using namespace std;
 
 class Game
 {
@@ -33,6 +36,7 @@ public:
 	Game( class MainWindow& wnd );
 	Game( const Game& ) = delete;
 	Game& operator=( const Game& ) = delete;
+	~Game();
 	void Go();
 
 
@@ -52,7 +56,7 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Ball ball;		//the ball 
-	
+	vector<CrashBreak*>* breaks;
 	Bar* bar;		//the abr the player controls
 	
 	/********************************/

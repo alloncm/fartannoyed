@@ -39,11 +39,6 @@ void Bar::MoveBar(int choice)
 
 Location Bar::encounter(Location loc, int radius, Location speed)
 {
-	if ((((loc.y <= (GetSurfaceH() - radius))&&loc.y+speed.y>= (GetSurfaceH() - radius)) && loc.x <= GetRightSideX() && loc.x >= GetLeftSideX()))
-	{
-
-
-
 		int disFromRight = GetLeftSideX() + _width - loc.x;
 
 		//if (speed.x >= 0) // ball comes from left
@@ -77,7 +72,7 @@ Location Bar::encounter(Location loc, int radius, Location speed)
 				speed.y = BALL_TOTAL_SPEED * disByPercent;
 			}
 		} */
-	}
+	
 	if (speed.y >= -1)
 		speed.y = -1;
 	return speed;

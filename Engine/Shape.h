@@ -3,8 +3,11 @@
 #include "Colors.h"
 #include "Location.h"
 #include "Graphics.h"
+#include <vector>
 
 #define BALL_TOTAL_SPEED 10
+
+using namespace std;
 
 class Shape
 {

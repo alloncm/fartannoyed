@@ -64,7 +64,8 @@ void Ball::BallMovement()
 
 
 //the ball bounce from the bar. in encounter the angle is being calculated
-void Ball::BounceFromBar(Bar* b)
+void Ball::Bounce(Bar* b)
 {
-	speed = b->encounter(_location,_radius,speed);
+	if ((((_location.y <= (b->GetSurfaceH() - _radius))&& _location.y+speed.y>= (b->GetSurfaceH() - _radius)) && _location.x <= b->GetRightSideX() && _location.x >= b->GetLeftSideX()))
+		speed = b->encounter(_location,_radius,speed);
 }
