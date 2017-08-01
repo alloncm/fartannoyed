@@ -15,5 +15,6 @@ public:
 	Ball(int r,Color c, Location loc,int s);
 	virtual void DrawShape(Graphics & gfx);		//Draw the ball to the screen
 	void BallMovement();						//moves the ball
-	void Bounce(Bar* b);					//the ball bounce from the bar 
+	bool Bounce(Block* b);						//the ball bounce from the block if hits return true
+	bool ColideWithBlock(Block* b);				//checks if the ball touches the block it recives
 };

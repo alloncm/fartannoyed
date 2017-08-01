@@ -25,10 +25,10 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball (25, Colors::Green, { 100,100 }, 7)
+	ball (15, Colors::Green, { 100,100 }, 7)
 {
 		bar = new Bar(Colors::Blue,{ 400,500 }, 300, 15, 6);
-		breaks = CrashBreak::generateBreaks(30);
+		breaks = CrashBreak::generateBreaks(40);
 }
 
 Game::~Game()
@@ -36,7 +36,7 @@ Game::~Game()
 	CrashBreak* temp;
 
 	delete bar;
-	for (int i = 0; i < !breaks->empty; i++)
+	for (int i = 0; i < breaks->size(); i++)
 	{
 		temp = breaks->back();
 		breaks->pop_back();
@@ -58,6 +58,18 @@ void Game::UpdateModel()
 	ball.BallMovement();
 	ball.Bounce(bar);
 	bar->MoveBar(GetKeyboardInputBar());
+	for (int i = 0; i < breaks->size(); i++)
+	{
+		if (breaks->at(i)->IsAlive())
+		{
+			if (ball.Bounce(breaks->at(i)))
+			{
+				breaks->at(i)->GotHit();
+			}
+		}
+		
+	}
+
 }
 
 int Game::GetKeyboardInputBar()
@@ -78,5 +90,12 @@ void Game::ComposeFrame()
 {
 	ball.DrawShape(gfx);
 	bar->DrawShape(gfx);
+	for (int i = 0; i < breaks->size(); i++)
+	{
+		if (breaks->at(i)->IsAlive())
+		{
+			breaks->at(i)->DrawShape(gfx);
+		}
+	}
 }
 

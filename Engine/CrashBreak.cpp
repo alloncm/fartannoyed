@@ -3,12 +3,19 @@
 
 Location CrashBreak::encounter(Location loc, int radius , Location speed)
 {
+	/*
 	if (( loc.y == (GetSurfaceH() - radius)) && loc.x <= GetRightSideX() && loc.x >= GetLeftSideX())
 	{
 		speed.y = -speed.y;
 	}
 	return speed;
+	*/
+
+	//the check is been made before calling encounter
+	speed.y = abs(speed.y);				//when changed with minus the ball kept going forward sometimes
+	return speed;
 }
+
 
 
 vector<CrashBreak*>* CrashBreak::generateBreaks(int amount)
@@ -19,8 +26,29 @@ vector<CrashBreak*>* CrashBreak::generateBreaks(int amount)
 	for (int i = 0; i < amount; i++)
 	{
 		// need to generate the locations of the breaks
-		temp = new CrashBreak(Colors::Blue, l);
-		vec->push_back(temp);
+		if (l.x + CrashBreakWidth >= Graphics::ScreenWidth)		//if the next break is going to be outside the screen go in
+		{
+			l.y += CrashBreakHeight + 1;	//plus one for the space between the blocks
+			l.x = 20;
+		}
+		if (l.y + CrashBreakHeight <= Graphics::ScreenHeight)		//if the next break is in the screen go in
+		{
+			l.x++;		//plus one for the space between blocks
+			temp = new CrashBreak(Colors::Red, l);
+			vec->push_back(temp);
+			l.x += CrashBreakWidth;
+		}
+		
 	}
 	return vec;
+}
+
+bool CrashBreak::IsAlive()
+{
+	return lives > 0;
+}
+
+void CrashBreak::GotHit()
+{
+	lives--;
 }

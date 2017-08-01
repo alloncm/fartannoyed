@@ -63,9 +63,36 @@ void Ball::BallMovement()
 }
 
 
-//the ball bounce from the bar. in encounter the angle is being calculated
-void Ball::Bounce(Bar* b)
+//the ball bounce from the block. in encounter the angle is being calculated
+bool Ball::Bounce(Block* b)
 {
+	/*
 	if ((((_location.y <= (b->GetSurfaceH() - _radius))&& _location.y+speed.y>= (b->GetSurfaceH() - _radius)) && _location.x <= b->GetRightSideX() && _location.x >= b->GetLeftSideX()))
 		speed = b->encounter(_location,_radius,speed);
+	*/
+	//bounce from the block
+	//better 
+	if (ColideWithBlock(b))
+	{
+		speed = b->encounter(_location, _radius, speed);
+		return true;
+	}
+	return false;
+}
+
+bool Ball::ColideWithBlock(Block * b)
+//still needs to improve it by not checking the inside of the block
+//checks if the ball collides with the block
+{
+	for (int i = b->GetLeftSideX(); i < b->GetRightSideX(); i++)
+	{
+		for (int j = b->GetSurfaceH(); j < b->GetSurfaceB(); j++)
+		{
+			if (_location.Distance(i, j) <= _radius)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }

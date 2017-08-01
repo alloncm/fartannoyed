@@ -7,6 +7,11 @@ int Location::Distance(Location loc)
 	return sqrt((_x*_x) + (_y*_y));
 }
 
+int Location::Distance(int _x, int _y)
+{
+	return Distance({ _x,_y });
+}
+
 void Location::add(int a, int b)
 {
 	x += a;
