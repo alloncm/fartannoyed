@@ -1,6 +1,6 @@
 #include "Ball.h"
 
-Ball::Ball(int r, Color c, Location loc,int s) 
+Ball::Ball(int r, Color c, Location loc,float s) 
 	:
 	Shape(c, loc),
 	speed(s,s),
@@ -36,7 +36,7 @@ void Ball::DrawShape(Graphics & gfx)
 void Ball::BallMovement()
 //moves the ball depends on the walls
 {
-	_location.add(speed);
+	_location.add(int(speed.x),int(speed.y));
 	
 	if (_location.x + _radius >= Graphics::ScreenWidth) //right wall
 	{

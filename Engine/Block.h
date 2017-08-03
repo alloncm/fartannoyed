@@ -2,6 +2,7 @@
 
 #include "Shape.h"
 #include "Location.h"
+#include "Vector2.h"
 
 class Block : public Shape
 {
@@ -16,5 +17,5 @@ public:
 	int GetSurfaceB();															//returns the Y location of the bottom surface of the block 
 	int GetRightSideX();														//return the right side X of the block
 	int GetLeftSideX();															//returns the left side X of the Block
-	virtual Location encounter(Location loc, int radius, Location speed) = 0;	// return the speed the ball at after the encounter
+	virtual Vector2 encounter(Location loc, int radius, Vector2 speed) = 0;	// return the speed the ball at after the encounter
 };

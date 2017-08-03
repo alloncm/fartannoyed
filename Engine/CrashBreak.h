@@ -9,7 +9,7 @@ public:
 		: Block(c, l, CrashBreakWidth, CrashBreakHeight),
 		lives(NumLives)
 	{}
-	virtual Location encounter(Location loc, int radius, Location speed);
+	virtual Vector2 encounter(Location loc, int radius, Vector2 speed);
 	static vector<CrashBreak*>* generateBreaks(int amount);
 	static constexpr int CrashBreakWidth = 30;
 	static constexpr int CrashBreakHeight = 10;
