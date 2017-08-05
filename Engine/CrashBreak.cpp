@@ -74,7 +74,7 @@ vector<CrashBreak*>* CrashBreak::generateBreaksRow(int amount, int hight)
 	for (int i = 0; i < amount; i++)
 	{
 		loc.x += SpaceBetweenBreaksWidth;
-		temp = new CrashBreak(Colors::cArray[rand()%9], loc);
+		temp = new CrashBreak(Colors::cArray[rand()%8], loc);
 		vec->push_back(temp);
 		loc.x += CrashBreakWidth;
 	}
