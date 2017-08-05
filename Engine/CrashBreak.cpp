@@ -12,7 +12,15 @@ Vector2 CrashBreak::encounter(Location loc, int radius , Vector2 speed)
 	*/
 
 	//the check is been made before calling encounter
-	speed.y = abs(speed.y);				//when changed with minus the ball kept going forward sometimes
+	//speed.y = abs(speed.y);				//when changed with minus the ball kept going forward sometimes
+	if (loc.x>=GetRightSideX() || loc.x<=GetLeftSideX())
+	{
+		speed.x = -speed.x;
+	}
+	if (loc.x <= GetRightSideX() && loc.x >= GetLeftSideX())
+	{
+		speed.y = -speed.y;
+	}
 	return speed;
 }
 
@@ -75,6 +83,7 @@ vector<CrashBreak*>* CrashBreak::generateBreaksRow(int amount, int hight)
 	{
 		loc.x += SpaceBetweenBreaksWidth;
 		temp = new CrashBreak(Colors::cArray[rand()%8], loc);
+		
 		vec->push_back(temp);
 		loc.x += CrashBreakWidth;
 	}

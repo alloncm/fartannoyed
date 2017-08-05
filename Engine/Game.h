@@ -54,6 +54,7 @@ public:
 	/*    User Functions     */
 	bool fall();
 	void lostGame();
+	void Drawlives();
 	/*************************/
 
 
@@ -77,5 +78,9 @@ private:
 	Bar* bar;		//the abr the player controls
 	int lives;
 
+	bool isAlive;
+
+	bool reLive;		//bool to indicate whether the ball needs to be reinit after fell to the floor
+						//to init press space
 	/********************************/
 };

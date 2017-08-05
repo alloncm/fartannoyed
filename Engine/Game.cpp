@@ -25,8 +25,10 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball (BALL_RADIUS, Colors::Green,BALL_LOCATOIN , BALL_SPEED),
-	lives(3)
+	ball(BALL_RADIUS, Colors::Green, BALL_LOCATOIN, BALL_SPEED),
+	lives(3),
+	isAlive(true),
+	reLive(false)
 {
 		bar = new Bar(Colors::Blue,BAR_LOCATOIN , BAR_WIDTH, BAR_HIGHT, BAR_SPEED);
 		breaks = CrashBreak::generateBreaks(NUM_OF_CRASH_BREAKS);
@@ -56,15 +58,26 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+												
 	if (!ball.BallMovement())
 	{
 		if (fall())
 		{
-			ball.setLocation(BALL_LOCATOIN);
-			ball.setSpeed(BALL_SPEED);
+			ball.setLocation({Graphics::ScreenWidth/2,Graphics::ScreenHeight/2});
+			ball.SetSpeed(0);
+			reLive = true;
 		}
 		else
 			lostGame();
+	}
+	if (reLive)
+	{
+ 		if (wnd.kbd.KeyIsPressed(VK_SPACE))
+		{
+			ball.SetSpeedY(sqrt(pow(BALL_SPEED,2)+pow(BALL_SPEED,2)));
+			reLive = false;
+		}
+		
 	}
 	ball.Bounce(bar);
 	bar->MoveBar(GetKeyboardInputBar());
@@ -95,7 +108,11 @@ int Game::GetKeyboardInputBar()
 
 void Game::ComposeFrame()
 {
-	ball.DrawShape(gfx);
+	if (isAlive)
+	{
+		ball.DrawShape(gfx);
+	}
+	
 	bar->DrawShape(gfx);
 	for (int i = 0; i < breaks->size(); i++)
 	{
@@ -104,6 +121,8 @@ void Game::ComposeFrame()
 			breaks->at(i)->DrawShape(gfx);
 		}
 	}
+
+	Drawlives();
 }
 
 
@@ -123,5 +142,17 @@ void Game::lostGame()
 {
 	//show message to user
 
-	this->~Game();
+	isAlive = false;
+}
+
+void Game::Drawlives()
+{
+	int x = 20;
+	int y = Graphics::ScreenHeight - 20;
+
+	for (int i = 0; i < lives; i++)
+	{
+		gfx.DrawRect({ x,y }, 7, 15, Colors::White);
+		x += 10;
+	}
 }

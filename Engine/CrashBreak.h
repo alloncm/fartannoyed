@@ -18,7 +18,7 @@ public:
 
 	static constexpr int CrashBreakWidth = 60;
 	static constexpr int CrashBreakHeight = 15;
-	static constexpr int SpaceBetweenBreaksWidth = 15;
+	static constexpr int SpaceBetweenBreaksWidth = 5;
 	static constexpr int SpaceBetweenBreaksHight = 5;
 
 	bool IsAlive();
@@ -41,7 +41,7 @@ namespace Crash
 	/*
 	return the number of breaks that enter to the screen
 	*/
-	static constexpr int maxBreaksInRow()
+	static int maxBreaksInRow()
 	{
 		int currentWidth = CrashBreak::CrashBreakWidth + 2 * CrashBreak::SpaceBetweenBreaksWidth;
 		int breaksNum = 1;
@@ -54,6 +54,6 @@ namespace Crash
 		return breaksNum;
 	}
 
-	static constexpr int MaxBreaksInRow = maxBreaksInRow();
+	static const int MaxBreaksInRow = maxBreaksInRow();
 
 }
