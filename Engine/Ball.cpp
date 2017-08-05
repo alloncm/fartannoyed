@@ -3,7 +3,7 @@
 Ball::Ball(int r, Color c, Location loc,float s) 
 	:
 	Shape(c, loc),
-	speed(s,s),
+	_speed(s,s),
 	_radius(r)
 {
 	
@@ -33,33 +33,36 @@ void Ball::DrawShape(Graphics & gfx)
 	}
 }
 
-void Ball::BallMovement()
+/*
+take care of the calculation of the ball movments
+return false if touce the floor, and true otherwise
+*/
+bool Ball::BallMovement()
 //moves the ball depends on the walls
 {
-	_location.add(int(speed.x),int(speed.y));
+	_location.add(int(_speed.x),int(_speed.y));
 	
 	if (_location.x + _radius >= Graphics::ScreenWidth) //right wall
 	{
-		speed.x =-speed.x;
+		_speed.x =-_speed.x;
 		_location.x = Graphics::ScreenWidth - _radius - 1;
 	}
 	else if(_location.x - _radius<= 0) //left wall
 	{
-		speed.x = -speed.x;
+		_speed.x = -_speed.x;
 		_location.x = 0 + _radius;
 	}
 	if (_location.y + _radius >= Graphics::ScreenHeight) //floor
 	{
-		speed.y = -speed.y;
-		_location.y = Graphics::ScreenHeight - _radius - 1;
+		return false;
 	}
 	else if (_location.y - _radius <= 0) //ceiling
 	{
-		speed.y = -speed.y;
+		_speed.y = -_speed.y;
 		_location.y = 0 + _radius;
 	}
 
-	
+	return true;
 }
 
 
@@ -74,7 +77,7 @@ bool Ball::Bounce(Block* b)
 	//better 
 	if (ColideWithBlock(b))
 	{
-		speed = b->encounter(_location, _radius, speed);
+		_speed = b->encounter(_location, _radius, _speed);
 		return true;
 	}
 	return false;

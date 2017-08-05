@@ -30,6 +30,17 @@
 
 using namespace std;
 
+#define BALL_RADIUS 15
+#define BALL_LOCATOIN {100,100}
+#define BALL_SPEED 7
+
+#define BAR_LOCATOIN { 400,500 }
+#define BAR_WIDTH 250
+#define BAR_HIGHT 15
+#define BAR_SPEED 6
+
+#define NUM_OF_CRASH_BREAKS 40
+
 class Game
 {
 public:
@@ -38,6 +49,12 @@ public:
 	Game& operator=( const Game& ) = delete;
 	~Game();
 	void Go();
+
+	/*************************/
+	/*    User Functions     */
+	bool fall();
+	void lostGame();
+	/*************************/
 
 
 private:
@@ -58,6 +75,7 @@ private:
 	Ball ball;		//the ball 
 	vector<CrashBreak*>* breaks;
 	Bar* bar;		//the abr the player controls
-	
+	int lives;
+
 	/********************************/
 };

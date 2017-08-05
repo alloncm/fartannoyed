@@ -25,10 +25,11 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball (15, Colors::Green, { 100,100 }, 7)
+	ball (BALL_RADIUS, Colors::Green,BALL_LOCATOIN , BALL_SPEED),
+	lives(3)
 {
-		bar = new Bar(Colors::Blue,{ 400,500 }, 300, 15, 6);
-		breaks = CrashBreak::generateBreaks(40);
+		bar = new Bar(Colors::Blue,BAR_LOCATOIN , BAR_WIDTH, BAR_HIGHT, BAR_SPEED);
+		breaks = CrashBreak::generateBreaks(NUM_OF_CRASH_BREAKS);
 }
 
 Game::~Game()
@@ -55,17 +56,23 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	ball.BallMovement();
+	if (!ball.BallMovement())
+	{
+		if (fall())
+		{
+			ball.setLocation(BALL_LOCATOIN);
+			ball.setSpeed(BALL_SPEED);
+		}
+		else
+			lostGame();
+	}
 	ball.Bounce(bar);
 	bar->MoveBar(GetKeyboardInputBar());
 	for (int i = 0; i < breaks->size(); i++)
 	{
-		if (breaks->at(i)->IsAlive())
+		if (breaks->at(i)->IsAlive() && ball.Bounce(breaks->at(i)))
 		{
-			if (ball.Bounce(breaks->at(i)))
-			{
 				breaks->at(i)->GotHit();
-			}
 		}
 		
 	}
@@ -99,3 +106,22 @@ void Game::ComposeFrame()
 	}
 }
 
+
+/*
+descend the lives by 1 and return true if still alive, or false if lost
+*/
+bool Game::fall()
+{
+	return --lives;
+}
+
+
+/*
+take care of ending the game
+*/
+void Game::lostGame()
+{
+	//show message to user
+
+	this->~Game();
+}

@@ -20,6 +20,8 @@
 ******************************************************************************************/
 #pragma once
 
+#include <map>
+
 class Color
 {
 public:
@@ -99,6 +101,7 @@ namespace Colors
 	{
 		return (r << 16) | (g << 8) | b;
 	}
+	
 	static constexpr Color White = MakeRGB( 255u,255u,255u );
 	static constexpr Color Black = MakeRGB( 0u,0u,0u );
 	static constexpr Color Gray = MakeRGB( 0x80u,0x80u,0x80u );
@@ -109,4 +112,5 @@ namespace Colors
 	static constexpr Color Yellow = MakeRGB( 255u,255u,0u );
 	static constexpr Color Cyan = MakeRGB( 0u,255u,255u );
 	static constexpr Color Magenta = MakeRGB( 255u,0u,255u );  //it makes a lot of mess at my machine
+	static constexpr Color cArray[] = { White , Black,Gray,LightGray,Red, Green, Blue, Yellow, Cyan, Magenta};
 }
