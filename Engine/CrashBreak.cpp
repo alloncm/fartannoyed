@@ -13,13 +13,42 @@ Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
 
 	//the check is been made before calling encounter
 	//speed.y = abs(speed.y);				//when changed with minus the ball kept going forward sometimes
-	if (loc.x>=GetRightSideX() || loc.x<=GetLeftSideX())
+	
+	//bottom left
+	if (loc.Distance(_location.x , _location.y + _hight) <= radius)
 	{
-		speed.x = -speed.x;
+		speed.x = -abs(speed.x);
+		speed.y = abs(speed.y);
+		return speed;
+	}
+	//bottom right
+	if (loc.Distance(_location.x + _width, _location.y + _hight) <= radius)
+	{
+		speed.x = abs(speed.x);
+		speed.y = abs(speed.y);
+		return speed;
+	}
+	//up left
+	if (loc.Distance(_location.x, _location.y) <= radius)
+	{
+		speed.x = -abs(speed.x);
+		speed.y = -abs(speed.y);
+		return speed;
+	}
+	//up right
+	if (loc.Distance(_location.x + _width, _location.y) <= radius)
+	{
+		speed.x = abs(speed.x);
+		speed.y = -abs(speed.y);
+		return speed;
 	}
 	if (loc.x <= GetRightSideX() && loc.x >= GetLeftSideX())
 	{
 		speed.y = -speed.y;
+	}
+	if (loc.x >= GetRightSideX() || loc.x <= GetLeftSideX())
+	{
+		speed.x = -speed.x;
 	}
 	return speed;
 }
