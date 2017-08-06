@@ -31,7 +31,7 @@
 using namespace std;
 
 #define BALL_RADIUS 15
-#define BALL_LOCATOIN {100,100}
+#define BALL_LOCATOIN {Graphics::ScreenWidth/2,Graphics::ScreenHeight/2}
 #define BALL_SPEED 7
 
 #define BAR_LOCATOIN { 400,500 }

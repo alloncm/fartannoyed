@@ -10,8 +10,10 @@
 class Ball : public Shape
 {
 private:
-	int _radius;		//the radius of the ball
-	Vector2 _speed;		//the speed of the ball.  
+	int _radius;								//the radius of the ball
+	Vector2 _speed;								//the speed of the ball.
+public:
+	bool _directionChanged;						//to solve the not changing direction after colliding with two breaks bug
 
 public:
 	Ball(int radius ,Color color, Location location,float speed);

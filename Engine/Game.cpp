@@ -25,10 +25,10 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball(BALL_RADIUS, Colors::Green, BALL_LOCATOIN, BALL_SPEED),
+	ball(BALL_RADIUS, Colors::Green, BALL_LOCATOIN, 0),
 	lives(3),
 	isAlive(true),
-	reLive(false)
+	reLive(true)
 {
 		bar = new Bar(Colors::Blue,BAR_LOCATOIN , BAR_WIDTH, BAR_HIGHT, BAR_SPEED);
 		breaks = CrashBreak::generateBreaks(NUM_OF_CRASH_BREAKS);
@@ -70,6 +70,7 @@ void Game::UpdateModel()
 		else
 			lostGame();
 	}
+	//allow the player to decide when to continue the game after falling by pressing space
 	if (reLive)
 	{
  		if (wnd.kbd.KeyIsPressed(VK_SPACE))
@@ -79,15 +80,20 @@ void Game::UpdateModel()
 		}
 		
 	}
-	ball.Bounce(bar);
-	bar->MoveBar(GetKeyboardInputBar());
+	ball.Bounce(bar);												//makes the ball bounce from the bar
+	bar->MoveBar(GetKeyboardInputBar());							//movement of the bar
+	//check for the breaks if they got hit
+	//if they are unalive them
 	for (int i = 0; i < breaks->size(); i++)
 	{
-		if (breaks->at(i)->IsAlive() && ball.Bounce(breaks->at(i)))
+
+		if (breaks->at(i)->IsAlive())
 		{
+			if (ball.Bounce(breaks->at(i)))
+			{
 				breaks->at(i)->GotHit();
+			}
 		}
-		
 	}
 
 }
@@ -146,13 +152,17 @@ void Game::lostGame()
 }
 
 void Game::Drawlives()
+//draw the lives left for the player to the screen
 {
 	int x = 20;
 	int y = Graphics::ScreenHeight - 20;
+	int width = 7;
+	int height = 15;
+	int space = 10;
 
 	for (int i = 0; i < lives; i++)
 	{
-		gfx.DrawRect({ x,y }, 7, 15, Colors::White);
-		x += 10;
+		gfx.DrawRect({ x,y }, width, height, Colors::White);
+		x += space;
 	}
 }
