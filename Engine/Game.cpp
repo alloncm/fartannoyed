@@ -75,7 +75,7 @@ void Game::UpdateModel()
 	{
  		if (wnd.kbd.KeyIsPressed(VK_SPACE))
 		{
-			ball.SetSpeedY(sqrt(pow(BALL_SPEED,2)+pow(BALL_SPEED,2)));
+			ball.SetSpeedY(float(sqrt(pow(BALL_SPEED,2)+pow(BALL_SPEED,2))));
 			reLive = false;
 		}
 		
@@ -108,6 +108,7 @@ int Game::GetKeyboardInputBar()
 	{
 		return 2;
 	}
+	return 0;
 }
 
 
@@ -137,7 +138,8 @@ descend the lives by 1 and return true if still alive, or false if lost
 */
 bool Game::fall()
 {
-	return --lives;
+	--lives;
+	return lives > 0;
 }
 
 

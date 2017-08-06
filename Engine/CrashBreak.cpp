@@ -70,7 +70,7 @@ vector<CrashBreak*>* CrashBreak::generateBreaksRow(int amount, int hight)
 	vector<CrashBreak*>* vec = new vector<CrashBreak*>;
 	CrashBreak* temp;
 	Location loc(0,hight );
-	srand(time(NULL));
+	srand(int(time(NULL)));
 
 	if (amount > Crash::MaxBreaksInRow)
 		amount = Crash::MaxBreaksInRow;
