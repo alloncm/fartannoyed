@@ -69,7 +69,7 @@ vector<CrashBreak*>* CrashBreak::generateBreaksRow(int amount, int hight)
 	int extraEndLineSpace = 0;
 	vector<CrashBreak*>* vec = new vector<CrashBreak*>;
 	CrashBreak* temp;
-	Location loc(0,hight + CrashBreakHeight/2);
+	Location loc(0,hight );
 	srand(time(NULL));
 
 	if (amount > Crash::MaxBreaksInRow)
@@ -78,7 +78,7 @@ vector<CrashBreak*>* CrashBreak::generateBreaksRow(int amount, int hight)
 	currentWidth = amount* (SpaceBetweenBreaksWidth + CrashBreakWidth) + SpaceBetweenBreaksWidth;
 	extraEndLineSpace = (Graphics::ScreenWidth - currentWidth) / 2;
 
-	loc.setX(extraEndLineSpace + CrashBreakWidth/2);
+	loc.setX(extraEndLineSpace);
 	for (int i = 0; i < amount; i++)
 	{
 		loc.x += SpaceBetweenBreaksWidth;

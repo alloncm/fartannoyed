@@ -16,24 +16,24 @@ void Bar::MoveBar(int choice)
 	switch (choice)
 	{
 	case 1:
-		if (_location.x - (_width / 2) - _speed >0)
+		if (_location.x - _speed >0)
 		{
 			_location.x -= _speed;
 		}
 		else
 		{
-			_location.x = 0 + _width / 2;
+			_location.x = 0;
 		}
 		break;
 
 	case 2:
-		if (_location.x + (_width / 2) + _speed < Graphics::ScreenWidth)
+		if (_location.x + _width  + _speed < Graphics::ScreenWidth)
 		{
 			_location.x += _speed;
 		}
 		else
 		{
-			_location.x = Graphics::ScreenWidth - _width / 2;
+			_location.x = Graphics::ScreenWidth - _width;
 		}
 		break;
 
@@ -92,7 +92,7 @@ Vector2 Bar::Encounter(Location loc, int radius, Vector2 speed)
 	const float TotalSpeed = speed.Length();
 	const float PI = 3.14159265f;
 
-	if (loc.x>_location.x)
+	if (loc.x>_location.x+_width/2)
 	{
 		int disFromRight = GetRightSideX() - loc.x;
 		float angle = atan((float(disFromRight) / (float(_width / 2) - disFromRight)));
@@ -108,7 +108,7 @@ Vector2 Bar::Encounter(Location loc, int radius, Vector2 speed)
 	else
 	{
 		int disFromLeft = loc.x - GetLeftSideX();
-		float angle = atan(  (float(_width / 2) - disFromLeft)/ (float(disFromLeft))) + PI/2;
+		float angle = atan((float((GetLeftSideX()+(_width) / 2)) - loc.x) / (float(disFromLeft))) + PI/2;
 		speed.x = TotalSpeed*cos(angle);
 		speed.y = -TotalSpeed*sin(angle);
 		while (speed.y >= -1.0f)

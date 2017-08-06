@@ -318,9 +318,9 @@ void Graphics::PutPixel( int x,int y,Color c )
 
 void Graphics::DrawRect(Location loc,int width, int height,Color color)
 {
-	for (int i =loc.x - (width / 2); i < loc.x + (width / 2); i++)
+	for (int i =loc.x; i < loc.x + width; i++)
 	{
-		for (int j = loc.y - (height / 2); j < loc.y + (height / 2); j++)
+		for (int j = loc.y ; j < loc.y + height; j++)
 		{
 			PutPixel(i, j, color);
 		}

@@ -25,20 +25,20 @@ void Block::DrawShape(Graphics & gfx)
 }
 int Block::GetSurfaceH()
 {
-	return _location.y - (_hight / 2);
+	return _location.y;
 }
 
 int Block::GetSurfaceB()
 {
-	return _location.y + (_hight / 2);
+	return _location.y + _hight;
 }
 
 int Block::GetRightSideX()
 {
-	return _location.x + (_width / 2);
+	return _location.x + _width;
 }
 
 int Block::GetLeftSideX()
 {
-	return _location.x - (_width / 2);
+	return _location.x;
 }
