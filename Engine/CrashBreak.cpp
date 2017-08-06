@@ -1,7 +1,7 @@
 #include "CrashBreak.h"
 
 
-Vector2 CrashBreak::encounter(Location loc, int radius , Vector2 speed)
+Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
 {
 	/*
 	if (( loc.y == (GetSurfaceH() - radius)) && loc.x <= GetRightSideX() && loc.x >= GetLeftSideX())
