@@ -21,4 +21,24 @@ void Block::DrawShape(Graphics & gfx)
 	}
 	*/
 	gfx.DrawRect(_location, _width, _hight, _color);
+
+}
+int Block::GetSurfaceH()
+{
+	return _location.y - (_hight / 2);
+}
+
+int Block::GetSurfaceB()
+{
+	return _location.y + (_hight / 2);
+}
+
+int Block::GetRightSideX()
+{
+	return _location.x + (_width / 2);
+}
+
+int Block::GetLeftSideX()
+{
+	return _location.x - (_width / 2);
 }

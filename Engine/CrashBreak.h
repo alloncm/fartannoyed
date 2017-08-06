@@ -11,7 +11,7 @@ public:
 		: Block(c, l, CrashBreakWidth, CrashBreakHeight),
 		lives(NumLives)
 	{}
-	virtual Vector2 encounter(Location loc, int radius, Vector2 speed);
+	virtual Vector2 Encounter(Location loc, int radius, Vector2 speed);
 	static vector<CrashBreak*>* generateBreaks(int amount);
 	static vector<CrashBreak*>* generateBreaksRow(int amount, int hight);
 	

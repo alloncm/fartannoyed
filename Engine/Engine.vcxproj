@@ -158,7 +158,6 @@
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Bar.cpp" />
     <ClCompile Include="Block.cpp" />
-    <ClCompile Include="Break.cpp" />
     <ClCompile Include="CrashBreak.cpp" />
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="Game.cpp" />
