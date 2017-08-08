@@ -8,7 +8,7 @@ class CrashBreak : public Block
 {
 public:
 	CrashBreak(Color c, Location l) 
-		: Block(c, l, CrashBreakWidth, CrashBreakHeight),
+		: Block(c, l, CrashBreakWidth, CrashBreakHeight, L"CrashBreakBamp.wav"),
 		lives(NumLives)
 	{}
 	virtual Vector2 Encounter(Location loc, int radius, Vector2 speed);
@@ -16,10 +16,12 @@ public:
 	static vector<CrashBreak*>* generateBreaksRow(int amount, int hight);
 	
 
-	static constexpr int CrashBreakWidth = 60;
-	static constexpr int CrashBreakHeight = 15;
-	static constexpr int SpaceBetweenBreaksWidth = 5;
+	static constexpr int CrashBreakWidth = 62;
+	static constexpr int CrashBreakHeight = 17;
+	static constexpr int SpaceBetweenBreaksWidth = 7;
 	static constexpr int SpaceBetweenBreaksHight = 5;
+	static constexpr int SpaceFromTop = 50;
+	static constexpr float BallIncrementPercents = 1.03;
 
 	bool IsAlive();
 	

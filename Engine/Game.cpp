@@ -75,7 +75,7 @@ void Game::UpdateModel()
 	{
  		if (wnd.kbd.KeyIsPressed(VK_SPACE))
 		{
-			ball.SetSpeedY(float(sqrt(pow(BALL_SPEED,2)+pow(BALL_SPEED,2))));
+			ball.SetSpeedY(float(sqrt(pow(BALL_START_SPEED,2)+pow(BALL_START_SPEED,2))));
 			reLive = false;
 		}
 		

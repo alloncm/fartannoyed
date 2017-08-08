@@ -19,37 +19,36 @@ Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
 	{
 		speed.x = -abs(speed.x);
 		speed.y = abs(speed.y);
-		return speed;
 	}
 	//bottom right
-	if (loc.Distance(_location.x + _width, _location.y + _hight) <= radius)
+	else if (loc.Distance(_location.x + _width, _location.y + _hight) <= radius)
 	{
 		speed.x = abs(speed.x);
 		speed.y = abs(speed.y);
-		return speed;
 	}
 	//up left
-	if (loc.Distance(_location.x, _location.y) <= radius)
+	else if (loc.Distance(_location.x, _location.y) <= radius)
 	{
 		speed.x = -abs(speed.x);
 		speed.y = -abs(speed.y);
-		return speed;
 	}
 	//up right
-	if (loc.Distance(_location.x + _width, _location.y) <= radius)
+	else if (loc.Distance(_location.x + _width, _location.y) <= radius)
 	{
 		speed.x = abs(speed.x);
 		speed.y = -abs(speed.y);
 		return speed;
 	}
-	if (loc.x <= GetRightSideX() && loc.x >= GetLeftSideX())
+	else if (loc.x <= GetRightSideX() && loc.x >= GetLeftSideX())
 	{
 		speed.y = -speed.y;
 	}
-	if (loc.x >= GetRightSideX() || loc.x <= GetLeftSideX())
+	else if (loc.x >= GetRightSideX() || loc.x <= GetLeftSideX())
 	{
 		speed.x = -speed.x;
 	}
+	speed = speed * BallIncrementPercents;
+	makeNoise();
 	return speed;
 }
 
@@ -60,7 +59,7 @@ vector<CrashBreak*>* CrashBreak::generateBreaks(int amount)
 	vector<CrashBreak*> *vec = new vector<CrashBreak*>;
 	vector<CrashBreak*>* temp;
 	CrashBreak* tempB;
-	int hight = 20;
+	int hight = SpaceFromTop;
 
 	while (amount > 0)
 	{

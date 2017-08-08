@@ -1,10 +1,11 @@
 #include "Block.h"
 
-Block::Block(Color c, Location l, int w, int h)
+Block::Block(Color c, Location l, int w, int h, wstring bamp)
 	:
 	Shape(c, l),
 	_width(w),
-	_hight(h)
+	_hight(h),
+	bampSound(bamp)
 {
 }
 

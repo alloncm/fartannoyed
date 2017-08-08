@@ -2,7 +2,7 @@
 
 Bar::Bar(Color c, Location l, int w, int h,int s)
 	:
-	Block(c,l,w,h),
+	Block(c,l,w,h, L"BarBamp.wav"),
 	_speed(s)
 {
 }
@@ -118,5 +118,6 @@ Vector2 Bar::Encounter(Location loc, int radius, Vector2 speed)
 			speed.y = -TotalSpeed*sin(angle);
 		}
 	}
+	makeNoise();
 	return speed;
 }
