@@ -78,6 +78,7 @@ bool Ball::Bounce(Block* b)
 	if (ColideWithBlock(b))
 	{
 		_speed = b->Encounter(_location, _radius, _speed);
+		this->colided = true;
 		return true;
 	}
 	return false;

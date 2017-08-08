@@ -1,13 +1,13 @@
 #include "Location.h"
 
-int Location::Distance(Location loc)
+float Location::Distance(Location loc) const
 {
 	int _x = this->x - loc.x;
 	int _y = this->y - loc.y;
-	return int(sqrt((_x*_x) + (_y*_y)));
+	return (sqrt((_x*_x) + (_y*_y)));
 }
 
-int Location::Distance(int _x, int _y)
+float Location::Distance(int _x, int _y) const
 {
 	return Distance({ _x,_y });
 }

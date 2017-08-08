@@ -7,8 +7,8 @@ public:
 	int y;	//y axis
 
 	Location(int _x,int _y) : x(_x),y(_y) {}
-	int Distance(Location loc);					//the distance between two Locations
-	int Distance(int _x, int _y);				//the distance between two Locations
+	float Distance(Location loc) const;					//the distance between two Locations
+	float Distance(int _x, int _y) const;				//the distance between two Locations
 	void add(int deltaX,int deltaY);			//adds to the x and y
 	void add(Location loc);						//adds to the x and y
 	int getX() { return x; }					//returns x

@@ -32,6 +32,7 @@ Game::Game(MainWindow& wnd)
 {
 		bar = new Bar(Colors::Blue,BAR_LOCATOIN , BAR_WIDTH, BAR_HIGHT, BAR_SPEED);
 		breaks = CrashBreak::generateBreaks(NUM_OF_CRASH_BREAKS);
+		ball.colided = false;
 }
 
 Game::~Game()
@@ -84,18 +85,34 @@ void Game::UpdateModel()
 	bar->MoveBar(GetKeyboardInputBar());							//movement of the bar
 	//check for the breaks if they got hit
 	//if they are unalive them
+	//ball can colide with only one break at a time
+	float closest = 1000;			//some high number, will store here the smallest distance from colided break
+	float index = 0;				//index for the colided break			
+	bool beenHit = false;			//idicates if there was a hit this frame
 	for (int i = 0; i < breaks->size(); i++)
 	{
-
 		if (breaks->at(i)->IsAlive())
 		{
-			if (ball.Bounce(breaks->at(i)))
+			if (ball.ColideWithBlock(breaks->at(i)))			//checks for collision
 			{
-				breaks->at(i)->GotHit();
+				float dis = ball.GetLoc().Distance(breaks->at(i)->GetLoc());		//stores the distance to the colided break
+				if (closest > dis)													//moves the value to the closest if its smaller
+				{
+					closest = dis;
+					index = i;
+					beenHit = true;
+				}
 			}
 		}
 	}
 
+	//if there was hit
+	if (beenHit)
+	{
+		ball.Bounce(breaks->at(index));
+		breaks->at(index)->GotHit();
+		ball.colided = false;
+	}
 }
 
 int Game::GetKeyboardInputBar()
