@@ -12,22 +12,23 @@ public:
 		lives(NumLives)
 	{}
 	virtual Vector2 Encounter(Location loc, int radius, Vector2 speed);
+	virtual void DrawShape(Graphics& gfx);
 	static vector<CrashBreak*>* generateBreaks(int amount);
 	static vector<CrashBreak*>* generateBreaksRow(int amount, int hight);
-	
+	bool IsAlive();
+	void GotHit();
 
+
+public:
 	static constexpr int CrashBreakWidth = 62;
 	static constexpr int CrashBreakHeight = 17;
-	static constexpr int SpaceBetweenBreaksWidth = 7;
-	static constexpr int SpaceBetweenBreaksHight = 5;
+	static constexpr int SpaceBetweenBreaksWidth = 0;
+	static constexpr int SpaceBetweenBreaksHight = 0;
 	static constexpr int SpaceFromTop = 50;
 	static constexpr float BallIncrementPercents = 1.02;
 
-	bool IsAlive();
 	
-	//static void MakeMap();
-	void GotHit();
-	//static map<int, Color> mapEnum;
+	
 	
 private:
 	int lives;

@@ -13,7 +13,7 @@ Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
 
 	//the check is been made before calling encounter
 	//speed.y = abs(speed.y);				//when changed with minus the ball kept going forward sometimes
-	
+	/*
 	//bottom left
 	if (loc.Distance(_location.x , _location.y + _hight) <= radius)
 	{
@@ -39,17 +39,85 @@ Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
 		speed.y = -abs(speed.y);
 		return speed;
 	}
-	else if (loc.x <= GetRightSideX() && loc.x >= GetLeftSideX())
+	
+	else if (loc.x <= GetRightSideX() && loc.x >= GetLeftSideX() )
 	{
 		speed.y = -speed.y;
 	}
-	else if (loc.x >= GetRightSideX() || loc.x <= GetLeftSideX())
+	else if (loc.x >= GetRightSideX() || loc.x <= GetLeftSideX() )
 	{
 		speed.x = -speed.x;
 	}
-	speed = speed * BallIncrementPercents;
+	*/
+	//speed = speed * BallIncrementPercents;
+
+	//ball coming from the up and right corner
+	if (speed.x < 0 && speed.y > 0)
+	{
+		if (loc.x <= GetRightSideX())
+		{
+			speed.y = -speed.y;
+		}
+		else
+		{
+			speed.x = -speed.x;
+		}
+	}
+	//ball coming from the left and up corner
+	else if (speed.x > 0 && speed.y > 0)
+	{
+		if (loc.x >= GetLeftSideX())
+		{
+			speed.y = -speed.y;
+		}
+		else
+		{
+			speed.x = -speed.x;
+		}
+	}
+	//ball coming from the bottom Left corner
+	else if (speed.x > 0 && speed.y < 0)
+	{
+		if (loc.x >= GetLeftSideX())
+		{
+			speed.y = -speed.y;
+		}
+		else
+		{
+			speed.x = -speed.x;
+		}
+	}
+	//ball coming from the bottom right corner
+	else if (speed.x < 0 && speed.y < 0)
+	{
+		if (loc.x <= GetRightSideX())
+		{
+			speed.y = -speed.y;
+		}
+		else
+		{
+			speed.x = -speed.x;
+		}
+	}
+	//ball is vertical or horizontal
+	else if (speed.x == 0 || speed.y == 0)
+	{
+		speed.x = -speed.x;
+		speed.y = -speed.y;
+	}
 	makeNoise();
 	return speed;
+	
+}
+
+//Draw the CarshBreak plus adds a little spcae bewtween them the spcae is only visible and not there really 
+void CrashBreak::DrawShape(Graphics & gfx)
+{
+	_width-=2;
+	_hight-=2;
+	Block::DrawShape(gfx);
+	_width+=2;
+	_hight+=2;
 }
 
 
