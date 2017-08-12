@@ -1,7 +1,7 @@
 #include "CrashBreak.h"
 
 
-Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
+Vector2 CrashBreak::Encounter(Location & loc, int radius , Vector2 speed)
 {
 	/*
 	if (( loc.y == (GetSurfaceH() - radius)) && loc.x <= GetRightSideX() && loc.x >= GetLeftSideX())
@@ -52,7 +52,7 @@ Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
 	//speed = speed * BallIncrementPercents;
 
 	//ball coming from the up and right corner
-	if (speed.x < 0 && speed.y > 0)
+	if (speed.x <= -1 && speed.y >= 1)
 	{
 		if (loc.x <= GetRightSideX())
 		{
@@ -64,7 +64,7 @@ Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
 		}
 	}
 	//ball coming from the left and up corner
-	else if (speed.x > 0 && speed.y > 0)
+	else if (speed.x >= 1 && speed.y >= 1)
 	{
 		if (loc.x >= GetLeftSideX())
 		{
@@ -76,7 +76,7 @@ Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
 		}
 	}
 	//ball coming from the bottom Left corner
-	else if (speed.x > 0 && speed.y < 0)
+	else if (speed.x >= 1 && speed.y <= -1)
 	{
 		if (loc.x >= GetLeftSideX())
 		{
@@ -88,7 +88,7 @@ Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
 		}
 	}
 	//ball coming from the bottom right corner
-	else if (speed.x < 0 && speed.y < 0)
+	else if (speed.x <= -1 && speed.y <= -1)
 	{
 		if (loc.x <= GetRightSideX())
 		{
@@ -100,7 +100,7 @@ Vector2 CrashBreak::Encounter(Location loc, int radius , Vector2 speed)
 		}
 	}
 	//ball is vertical or horizontal
-	else if (speed.x == 0 || speed.y == 0)
+	else if ((speed.x < 1 &&speed.x > -1) || (speed.y < 1 && speed.y > -1))
 	{
 		speed.x = -speed.x;
 		speed.y = -speed.y;

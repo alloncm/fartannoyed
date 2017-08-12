@@ -11,7 +11,7 @@ public:
 		: Block(c, l, CrashBreakWidth, CrashBreakHeight, L"CrashBreakBamp.wav"),
 		lives(NumLives)
 	{}
-	virtual Vector2 Encounter(Location loc, int radius, Vector2 speed);
+	virtual Vector2 Encounter(Location & loc, int radius, Vector2 speed);
 	virtual void DrawShape(Graphics& gfx);
 	static vector<CrashBreak*>* generateBreaks(int amount);
 	static vector<CrashBreak*>* generateBreaksRow(int amount, int hight);
