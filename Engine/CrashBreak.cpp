@@ -48,8 +48,10 @@ Vector2 CrashBreak::Encounter(Location & loc, int radius , Vector2 speed)
 	{
 		speed.x = -speed.x;
 	}
-	*/
+	
 	//speed = speed * BallIncrementPercents;
+	*/
+
 
 	//ball coming from the up and right corner
 	if (speed.x <= -1 && speed.y >= 1)
@@ -57,10 +59,17 @@ Vector2 CrashBreak::Encounter(Location & loc, int radius , Vector2 speed)
 		if (loc.x <= GetRightSideX())
 		{
 			speed.y = -speed.y;
+			loc.y = GetSurfaceH() - radius;
+		}
+		else if (abs(speed.y) >= abs(speed.x) && loc.y <= GetSurfaceH())
+		{
+			speed.y = -speed.y;
+			loc.y = GetSurfaceH() - radius;
 		}
 		else
 		{
 			speed.x = -speed.x;
+			loc.x = GetRightSideX() + radius;
 		}
 	}
 	//ball coming from the left and up corner
@@ -69,10 +78,17 @@ Vector2 CrashBreak::Encounter(Location & loc, int radius , Vector2 speed)
 		if (loc.x >= GetLeftSideX())
 		{
 			speed.y = -speed.y;
+			loc.y = GetSurfaceH() - radius;
+		}
+		else if (abs(speed.y) >= abs(speed.x) && loc.y <= GetSurfaceH())
+		{
+			speed.y = -speed.y;
+			loc.y = GetSurfaceH() - radius;
 		}
 		else
 		{
 			speed.x = -speed.x;
+			loc.x = GetLeftSideX() - radius;
 		}
 	}
 	//ball coming from the bottom Left corner
@@ -81,10 +97,17 @@ Vector2 CrashBreak::Encounter(Location & loc, int radius , Vector2 speed)
 		if (loc.x >= GetLeftSideX())
 		{
 			speed.y = -speed.y;
+			loc.y = GetSurfaceB() + radius;
+		}
+		else if (abs(speed.y) >= abs(speed.x) && loc.y >= GetSurfaceB())
+		{
+			speed.y = -speed.y;
+			loc.y = GetSurfaceB() + radius;
 		}
 		else
 		{
 			speed.x = -speed.x;
+			loc.x = GetLeftSideX() - radius;
 		}
 	}
 	//ball coming from the bottom right corner
@@ -93,18 +116,28 @@ Vector2 CrashBreak::Encounter(Location & loc, int radius , Vector2 speed)
 		if (loc.x <= GetRightSideX())
 		{
 			speed.y = -speed.y;
+			loc.y = GetSurfaceB() + radius;
+		}
+		else if (abs(speed.y) >= abs(speed.x) && loc.y >= GetSurfaceB())
+		{
+			speed.y = -speed.y;
+			loc.y = GetSurfaceB() + radius;
 		}
 		else
 		{
 			speed.x = -speed.x;
+			loc.x = GetRightSideX() + radius;
 		}
 	}
 	//ball is vertical or horizontal
-	else if ((speed.x < 1 &&speed.x > -1) || (speed.y < 1 && speed.y > -1))
+	else if ((speed.x < 1 && speed.x > -1) || (speed.y < 1 && speed.y > -1))
 	{
 		speed.x = -speed.x;
 		speed.y = -speed.y;
 	}
+	
+	
+	
 	makeNoise();
 	return speed;
 	
