@@ -19,7 +19,7 @@ public:
 	int GetSurfaceB();															//returns the Y location of the bottom surface of the block 
 	int GetRightSideX();														//return the right side X of the block
 	int GetLeftSideX();															//returns the left side X of the Block
-	virtual Vector2 Encounter(Location loc, int radius, Vector2 speed) = 0;		// return the speed the ball at after the encounter
+	virtual Vector2 Encounter(Location & loc, int radius, Vector2 speed) = 0;		// return the speed the ball at after the encounter
 	void makeNoise() { bampSound.Play(); }                                      // play the sound when hit
 
 

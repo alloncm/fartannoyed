@@ -87,10 +87,12 @@ Location Bar::encounter(Location loc, int radius, Location speed)
 	
 }
 */
-Vector2 Bar::Encounter(Location loc, int radius, Vector2 speed)
+Vector2 Bar::Encounter(Location & loc, int radius, Vector2 speed)
 {
 	const float TotalSpeed = speed.Length();
 	const float PI = 3.14159265f;
+
+	loc.y = _location.y - radius;
 
 	if (loc.x>_location.x+_width/2)
 	{

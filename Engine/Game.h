@@ -30,7 +30,7 @@
 
 using namespace std;
 
-#define BALL_RADIUS 12
+#define BALL_RADIUS 5
 #define BALL_LOCATOIN {Graphics::ScreenWidth/2,Graphics::ScreenHeight/2}
 #define BALL_START_SPEED 7
 //#define BALL_INCREMENT_PERCENTS 1.1
@@ -40,7 +40,7 @@ using namespace std;
 #define BAR_HIGHT 12
 #define BAR_SPEED 6
 
-#define NUM_OF_CRASH_BREAKS 55
+#define NUM_OF_CRASH_BREAKS 48
 
 class Game
 {
