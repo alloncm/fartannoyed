@@ -21,7 +21,7 @@ public:
 	static constexpr int SpaceBetweenBreaksWidth = 7;
 	static constexpr int SpaceBetweenBreaksHight = 5;
 	static constexpr int SpaceFromTop = 50;
-	static constexpr float BallIncrementPercents = 1.02;
+	static constexpr float BallIncrementPercents = 1.012;
 
 	bool IsAlive();
 	
